@@ -91,6 +91,7 @@ func (pcf *RedPack) SendRedPack(p *RedPackParams) (rsp RedPackResp, err error) {
 	param["total_num"] = p.TotalNum
 	param["wishing"] = p.Wishing
 	param["wxappid"] = pcf.AppID
+	param["scene_id"] = p.SceneId
 
 	bizKey := "&key=" + pcf.PayKey
 	str := orderParam(param, bizKey)
