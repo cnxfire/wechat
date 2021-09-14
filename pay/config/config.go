@@ -8,4 +8,5 @@ type Config struct {
 	NotifyURL string `json:"notify_url"`
 	PayKey string `json:"pay_key"`
 	PayMchID string `json:"pay_mch_id"`
+	ClientIP string `json:"client_ip"`
 }

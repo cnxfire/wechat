@@ -34,6 +34,7 @@ type RedPackParams struct {
 	TotalNum    int
 	Wishing     string
 	RootCa      string //ca证书
+	SceneId     string //场景
 }
 
 //RedPackRequest 请求参数
@@ -51,7 +52,7 @@ type RedPackRequest struct {
 	Wishing     string `xml:"wishing"`      //必填，红包祝福语
 	Wxappid     string `xml:"wxappid"`      //必填，微信公众号id
 	Sign        string `xml:"sign"`         //必填，签名
-	//SceneId		string		`xml:"scene_id"`	  //非必填，红包使用场景
+	SceneId     string `xml:"scene_id"`     //非必填，红包使用场景
 	//RiskInfo 	string		`xml:"risk_info"`    //非必填，用户操作的时间戳
 	//ConsumeMchId string		`xml:"consume_mch_id"` //非必填，资金授权商户号
 }
@@ -96,7 +97,7 @@ func (pcf *RedPack) SendRedPack(p *RedPackParams) (rsp RedPackResp, err error) {
 	sign := util.MD5Sum(str)
 	request := RedPackRequest{
 		ActName:     p.ActName,
-		ClientIP:    "115.60.166.154",
+		ClientIP:    pcf.ClientIP,
 		MchBillno:   p.MchBillno,
 		MchID:       pcf.PayMchID,
 		NonceStr:    nonceStr,
@@ -107,6 +108,7 @@ func (pcf *RedPack) SendRedPack(p *RedPackParams) (rsp RedPackResp, err error) {
 		TotalNum:    p.TotalNum,
 		Wishing:     p.Wishing,
 		Wxappid:     pcf.AppID,
+		SceneId:     p.SceneId,
 		Sign:        sign,
 	}
 	rawRet, err := util.PostXMLWithTLS(redpackGateway, request, p.RootCa, pcf.PayMchID)
