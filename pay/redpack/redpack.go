@@ -80,7 +80,7 @@ func (pcf *RedPack) SendRedPack(p *RedPackParams) (rsp RedPackResp, err error) {
 	nonceStr := util.RandomStr(32)
 	param := make(map[string]interface{})
 	param["act_name"] = p.ActName
-	param["client_ip"] = "115.60.166.154"
+	param["client_ip"] = pcf.ClientIP
 	param["mch_billno"] = p.MchBillno
 	param["mch_id"] = pcf.PayMchID
 	param["nonce_str"] = nonceStr
