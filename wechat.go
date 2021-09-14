@@ -50,8 +50,3 @@ func (wc *Wechat) GetOfficialAccount(cfg *offConfig.Config) *officialaccount.Off
 func (wc *Wechat) GetPay(cfg *payConfig.Config) *pay.Pay {
 	return pay.NewPay(cfg)
 }
-
-// GetWork 获取企业微信的实例
-func (wc *Wechat) GetWork(cfg *workConfig.Config) *work.Work {
-	return work.NewWork(cfg)
-}
