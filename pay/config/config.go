@@ -6,4 +6,6 @@ type Config struct {
 	MchID     string `json:"mch_id"`
 	Key       string `json:"key"`
 	NotifyURL string `json:"notify_url"`
+	PayKey string `json:"pay_key"`
+	PayMchID string `json:"pay_mch_id"`
 }

@@ -4,6 +4,7 @@ import (
 	"github.com/cnxfire/wechat/pay/config"
 	"github.com/cnxfire/wechat/pay/notify"
 	"github.com/cnxfire/wechat/pay/order"
+	"github.com/cnxfire/wechat/pay/redpack"
 	"github.com/cnxfire/wechat/pay/refund"
 	"github.com/cnxfire/wechat/pay/transfer"
 )
@@ -36,4 +37,9 @@ func (pay *Pay) GetRefund() *refund.Refund {
 // GetTransfer 付款
 func (pay *Pay) GetTransfer() *transfer.Transfer {
 	return transfer.NewTransfer(pay.cfg)
+}
+
+// GetTransfer 红包
+func (pay *Pay) GetRedPack() *redpack.RedPack {
+	return redpack.NewRedPack(pay.cfg)
 }

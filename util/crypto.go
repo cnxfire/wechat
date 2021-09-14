@@ -1,6 +1,7 @@
 package util
 
 import (
+	"bufio"
 	"bytes"
 	"crypto/aes"
 	"crypto/cipher"
@@ -329,4 +330,16 @@ func PKCS5UnPadding(origData []byte) []byte {
 	length := len(origData)
 	unPadding := int(origData[length-1])
 	return origData[:(length - unPadding)]
+}
+
+// MD5Sum 计算 32 位长度的 MD5 sum
+func MD5Sum(txt string) (sum string) {
+	h := md5.New()
+	buf := bufio.NewWriterSize(h, 128)
+	buf.WriteString(txt)
+	buf.Flush()
+	sign := make([]byte, hex.EncodedLen(h.Size()))
+	hex.Encode(sign, h.Sum(nil))
+	sum = string(bytes.ToUpper(sign))
+	return
 }
